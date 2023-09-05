@@ -160,6 +160,8 @@ message ActorTableData {
   // might depend on actor fields to be initialized in __init__.
   // Default to empty string if no customized repr is defined.
   string repr_name = 31;
+  // Strategy about how to schedule this actor.
+  SchedulingStrategy scheduling_strategy = 32;
 }
 
 message ErrorTableData {
