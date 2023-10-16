@@ -209,10 +209,24 @@ class Test(dict):
         """
         return self.get("python", ".".join(str(v) for v in DEFAULT_PYTHON_VERSION))
 
+    def get_byod_base_image_tag_v2(self) -> str:
+        commit = os.environ.get(
+            "COMMIT_TO_TEST",
+            os.environ["BUILDKITE_COMMIT"],
+        )
+        ray_version = commit[:6]
+        python_version = f"py{self.get_python_version().replace('.',   '')}"
+        byod_type = self.get_byod_type()
+        platform = "cu118" if byod_type == "gpu" else byod_type
+        return f"{ray_version}-{python_version}-{platform}"
+
     def get_byod_base_image_tag(self) -> str:
         """
         Returns the byod image tag to use for this test.
         """
+        if os.environ.get("RAY_CIV2"):
+            return self.get_byod_base_image_tag_v2()
+
         byod_image_tag = os.environ.get("RAY_IMAGE_TAG")
         if byod_image_tag:
             # Use the image tag specified in the environment variable.

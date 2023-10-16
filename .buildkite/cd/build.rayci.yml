@@ -1,6 +1,7 @@
 group: build
 steps:
-  - label: ":tapioca: build: anyscale py{{matrix}} docker"
+  - name: build
+    label: ":tapioca: build: anyscale py{{matrix}} docker"
     tags:
       - python_dependencies
       - docker
@@ -20,7 +21,8 @@ steps:
       - "3.9"
       - "3.11"
 
-  - label: ":tapioca: build: anyscale-ml py{{matrix}} docker"
+  - name: build
+    label: ":tapioca: build: anyscale-ml py{{matrix}} docker"
     tags:
       - python_dependencies
       - docker
@@ -33,7 +35,6 @@ steps:
       - manylinux
       - forge
       - ray-mlcudabase
-      - ray-mlcpubase
     job_env: forge
     matrix:
       - "3.8"

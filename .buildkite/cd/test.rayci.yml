@@ -1,0 +1,11 @@
+group: test
+steps:
+  - label: shuffle_100gb.aws
+    commands:
+      - RAY_CIV2=1 ./release/run_release_test.sh shuffle_100gb.aws 
+        --global-config oss_config.yaml
+        --ray-wheels https://s3-us-west-2.amazonaws.com/ray-wheels/master/8d286f03ce39e8856d1ffaa20f377e4bda24dc26/ray-3.0.0.dev0-cp38-cp38-manylinux2014_x86_64.whl
+    job_env: forge
+    depends_on:
+      - forge
+      - build
