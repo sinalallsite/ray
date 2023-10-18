@@ -255,7 +255,10 @@ if __name__ == "__main__":
                 RAY_CI_JAVA_AFFECTED = 1
             elif changed_file.startswith("cpp/"):
                 RAY_CI_CPP_AFFECTED = 1
-            elif changed_file.startswith("docker/"):
+            elif (
+                changed_file.startswith("docker/")
+                or changed_file == ".buildkite/pipeline.build_release.yml"
+            ):
                 RAY_CI_DOCKER_AFFECTED = 1
                 RAY_CI_LINUX_WHEELS_AFFECTED = 1
             elif changed_file.startswith("doc/"):
@@ -284,7 +287,9 @@ if __name__ == "__main__":
             elif changed_file.startswith("ci/lint"):
                 # Linter will always be run
                 RAY_CI_TOOLS_AFFECTED = 1
-            elif changed_file.startswith("ci/pipeline"):
+            elif changed_file.startswith("ci/pipeline") or changed_file.startswith(
+                "ci/ray_ci"
+            ):
                 # These scripts are always run as part of the build process
                 RAY_CI_TOOLS_AFFECTED = 1
             elif changed_file.endswith("build-docker-images.py"):

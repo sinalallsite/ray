@@ -12,8 +12,16 @@ RUN mkdir /rayci
 WORKDIR /rayci
 COPY . .
 
+
 RUN <<EOF
 #!/bin/bash
+
+set -euo pipefail
+
+if [[ "$BUILD_TYPE" == "wheel" ]]; then
+  # we do not need to re-build ray since the wheel is already built
+  exit 0
+fi
 
 (
   cd dashboard/client 
