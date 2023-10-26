@@ -217,7 +217,7 @@ def test_compute_config_invalid_ebs():
 
 
 def test_load_and_validate_test_collection_file():
-    read_and_validate_release_test_collection(_TEST_COLLECTION_FILE)
+    read_and_validate_release_test_collection([_TEST_COLLECTION_FILE])
 
 
 if __name__ == "__main__":
