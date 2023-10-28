@@ -5,6 +5,7 @@ srcs:
   - python/requirements.txt
   - python/requirements_compiled.txt
   - python/requirements/test-requirements.txt
+  - python/requirements/ml/data-requirements.txt 
 build_args:
   - PYTHON_VERSION=3.11
 tags:

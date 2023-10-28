@@ -45,7 +45,7 @@
       --test_env=DOCKER_TLS_CERTDIR=/certs
       -- python/ray/tests/...
 
-- label: ":book: Doctest (CPU)"
+- label: ":book: Doctest (no owners)"
   instance_size: large
   commands:
     - cleanup() { if [ "${BUILDKITE_PULL_REQUEST}" = "false" ]; then ./ci/build/upload_build_info.sh; fi }; trap cleanup EXIT
